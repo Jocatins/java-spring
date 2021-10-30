@@ -17,12 +17,12 @@ public class TitanService {
 	//GET all
 	public List<Titan> getAllTitans(){
 		List<Titan> titans = new ArrayList<>();
-		titanRepository.findAll()
+		this.titanRepository.findAll()
 		.forEach(titans::add);
 		return titans;
 	}
 	//GET Method id
-	public Titan getTitan(String id) {
+	public Titan getTitan(Long id) {
 		return titanRepository.findById(id).orElse(new Titan());
 	}
 	//POST Method
@@ -30,10 +30,10 @@ public class TitanService {
 		titanRepository.save(titan);
 	}
 	//PUT Method
-	public void updateTitan(String id, Titan titan) {
+	public void updateTitan(Long id, Titan titan) {
 		titanRepository.save(titan);	
 	}
-	public void deleteTitan(String id) {
+	public void deleteTitan(Long id) {
 		titanRepository.deleteById(id);
 	}
 }

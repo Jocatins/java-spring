@@ -1,21 +1,36 @@
 package com.titan.code.titans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.titan.code.gypsy.Gypsy;
 
 @Entity
 public class Titan  {
 	@Id
-	private String id ;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id ;
 	private int age;
 	private String name;
 	private String description;
+	
+	@OneToMany( mappedBy = "titan" )
+	private List<Gypsy> gypsyList;
 	
 	public Titan() {
 		
 	}
 	
-	public Titan(String id,  int age ,String name, String description) {
+	public Titan(Long id) {
+		this.id  = id;
+	}
+	
+	public Titan(Long id,  int age ,String name, String description) {
 		super();
 		this.id = id;
 		this.age = age;
@@ -23,12 +38,10 @@ public class Titan  {
 		this.description = description;
 		
 	}
-	public String getId() { 
+	public Long getId() { 
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 	public int getAge() {
 		return age;
 	}
@@ -41,10 +54,10 @@ public class Titan  {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDesc() {
+	public String getDescription() {
 		return description;
 	}
-	public void setDesc(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 		

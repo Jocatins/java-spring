@@ -1,7 +1,9 @@
 package com.titan.code.titans;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TitanRepository extends CrudRepository<Titan, String> {
+@Repository
+public interface TitanRepository extends CrudRepository<Titan, Long> {
 
 }

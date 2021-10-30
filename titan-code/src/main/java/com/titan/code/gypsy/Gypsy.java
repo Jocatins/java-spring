@@ -1,7 +1,11 @@
 package com.titan.code.gypsy;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.titan.code.titans.Titan;
@@ -9,32 +13,39 @@ import com.titan.code.titans.Titan;
 @Entity
 public class Gypsy  {
 	@Id
-	private String id ;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id ;
+	
+	@Column(name = "age")
 	private int age;
+	
+	@Column(name ="name")
 	private String name;
-	private String description;
-	@ManyToOne
+	
+	@Column(name = "description")
+	private String description;  
+	
+	@ManyToOne()
+	@JoinColumn( name = "titan_id" )
 	private Titan titan;
 	
 	public Gypsy() {
 		
-	}
+	} 
 	
-	public Gypsy(String id,  int age ,String name, String description, String titanId) {
+	public Gypsy(Long id,  int age ,String name, String description, Long titanId) {
 		super();
 		this.id = id;
 		this.age = age;
 		this.name = name;
 		this.description = description;
-		this.titan = new Titan(titanId, age, titanId, titanId);
+		this.titan = new Titan();
 		
 	}
-	public String getId() { 
+	public Long getId() { 
 		return id;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 	public int getAge() {
 		return age;
 	}
